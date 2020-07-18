@@ -92,26 +92,28 @@ function setPlayerMoves(player, moveOneType, moveOneValue, moveTwoType, moveTwoV
 //compares moves and values for current round and determines winner. 
 function getRoundWinner(round){
 
-    //TO DO: 
-    //evaluate ties first.
-    //return 'Tie';
-    //type always wins. 
-    //values win if that's a tie. 
-    //if the above are both ties, then it's an overall tie. 
-    //if no ties, then evaluate types at the end. 
+            //checks for invalid round inputs
+            if(round !== 1 && round !== 2 && round !== 3){
+                return null;
+            }
 
-
+    //Using a switch to determine round:
     //Takes round number, and jumps to the appropriate round evaluation. 
-
-    //Evaluates for a double tie for type and strength values. 
-    //Checks for double tie on move 1. 
-    //Else if type ties, then evalutates strength scores. 
-
-    //Using a switch to determine round: 
-
+    //Checks for tie at beginning of each round, after ties are evaluated round winner is determined. 
+    //Switch will also check for present values for move values and types before determining winner. 
     switch(round){
+        
         case 1: //round 1
-            if(playerOneMoveOneType === playerTwoMoveOneType){ 
+        if(playerOneMoveOneType === undefined || playerOneMoveOneValue === undefined){
+            return null;
+        }
+
+        if(playerTwoMoveOneType === undefined || playerTwoMoveOneValue === undefined){
+            return null;
+        }
+        
+        if(playerOneMoveOneType === playerTwoMoveOneType){ 
+                
                 if(playerOneMoveOneValue === playerTwoMoveOneValue){
                     return "Tie";
                 }
@@ -148,11 +150,20 @@ function getRoundWinner(round){
         break;
 
         case 2: //round 2
+        //checks for variables being undefined. 
+        if(playerOneMoveTwoType === undefined || playerOneMoveTwoValue === undefined){
+            return null;
+        }
+
+        if(playerTwoMoveTwoType === undefined || playerTwoMoveTwoValue === undefined){
+            return null;
+        }
+        //checks for double ties
         if(playerOneMoveTwoType === playerTwoMoveTwoType){ 
             if(playerOneMoveTwoValue === playerTwoMoveTwoValue){
                 return "Tie";
             }
-    
+            //determines winner
             else if(playerOneMoveTwoValue > playerTwoMoveTwoValue){
                 return "Player One";
             }
@@ -160,7 +171,7 @@ function getRoundWinner(round){
             return "Player Two";
         }
 
-        //evaluates types and determines winners for move 1
+        //evaluates types and determines winners for move 2
         else if(playerOneMoveTwoType === 'rock'){
          if(playerTwoMoveTwoType === 'paper'){
          return 'Player Two';
@@ -185,6 +196,15 @@ function getRoundWinner(round){
     break;
 
     case 3: //round 3
+    
+    if(playerOneMoveThreeType === undefined || playerOneMoveThreeValue === undefined){
+        return null;
+    }
+
+    if(playerTwoMoveThreeType === undefined || playerTwoMoveThreeValue === undefined){
+        return null;
+    }
+    
     if(playerOneMoveThreeType === playerTwoMoveThreeType){ 
         if(playerOneMoveThreeValue === playerTwoMoveThreeValue){
             return "Tie";
@@ -197,7 +217,7 @@ function getRoundWinner(round){
         return "Player Two";
     }
 
-    //evaluates types and determines winners for move 1
+    //evaluates types and determines winners for move 3
     else if(playerOneMoveThreeType === 'rock'){
      if(playerTwoMoveThreeType === 'paper'){
      return 'Player Two';
@@ -226,15 +246,9 @@ break;
 
 }//close getRoundWinner
 
-//setPlayerMoves('Player One', 'scissors', 2, 'paper', 2, 'rock', 2);
-//setPlayerMoves('Player Two', 'rock', 2, 'scissors', 2, 'paper', 2);
-//console.log(`${getRoundWinner(3)}`);
-
 function getGameWinner() {
 /*
 TO DO: 
-getGameWinner() - Main Functionality
-17) a function called getGameWinner should exist
 18) should declare when player one wins
 19) should declare when player two wins
 20) should declare when the game is a tie
@@ -245,6 +259,11 @@ getGameWinner() - Main Functionality
 */
 
 } //close getGameWinner()
+
+
+//setPlayerMoves('Player One', 'rock', 1, 'paper', 2, 'rock', 2);
+//setPlayerMoves('Player Two', 'scissors', 99, 'scissors', 3, 'scissors', 3);
+//console.log(`${getRoundWinner(1)}`);
 
 function setComputerMoves(){
     //TO DO: 
