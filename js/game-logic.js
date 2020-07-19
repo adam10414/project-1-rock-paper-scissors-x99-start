@@ -329,20 +329,81 @@ else return 'Player Two';
 
 } //close getGameWinner()
 
-/* Debugging
-setPlayerMoves('Player One', 'rock', 2, 'paper', 2, 'scissors', 2);
-setPlayerMoves('Player Two', 'scissors', 1, 'rock', 1, 'paper', 1);
-
-console.log(`${getRoundWinner(1)} wins round 1!`);
-console.log(`${getRoundWinner(2)} wins round 2!`);
-console.log(`${getRoundWinner(2)} wins round 3!`);
-
-console.log(`${getGameWinner()} wins the game!`);
-*/
 
 function setComputerMoves(){
     //TO DO: 
-    //Chose 3 randome move types. 
+    //Chose 3 randome move types for player 2. 
     //Chose random strength values between 1-99 (Will likely need to multiply by 99 + 1.)
 
+    //running random function 3 times and assigning move types based on values. 
+    let move1 = Math.floor(Math.random()*3);
+    let move2 = Math.floor(Math.random()*3);
+    let move3 = Math.floor(Math.random()*3);
+
+    //Setting move 1
+    if(move1 === 0){
+        playerTwoMoveOneType = 'rock';
+    }
+
+    else if (move1 === 1){
+        playerTwoMoveOneType = 'paper';
+    }
+
+    else if(move1 === 2){
+        playerTwoMoveOneType = 'scissors';
+    }
+
+    //Setting move 2
+    if(move2 === 0){
+        playerTwoMoveTwoType = 'rock';
+    }
+
+    else if (move2 === 1){
+        playerTwoMoveTwoType = 'paper';
+    }
+
+    else if(move2 === 2){
+        playerTwoMoveTwoType = 'scissors';
+    }
+
+    //Setting move 3
+    if(move3 === 0){
+        playerTwoMoveThreeType = 'rock';
+    }
+
+    else if (move3 === 1){
+        playerTwoMoveThreeType = 'paper';
+    }
+
+    else if(move3 === 2){
+        playerTwoMoveThreeType = 'scissors';
+    }
+
+    //Declares the total value for all 3 moves. After each move value is assigned, wills subtract from this bin to determine values for the rest of the moves. 
+    //Adding 1 to 99 since random starts from 0
+    let totalValue = 99;
+    
+    //Assigning playerTwoMoveOneValue a random number between 0-99
+    playerTwoMoveOneValue = Math.floor(Math.random() * totalValue);
+
+    //subtracting the value of move 1 from the total value giving us the left over "strength" for the next two moves. Will repeat this process once more. 
+    totalValue = totalValue - playerTwoMoveOneValue;
+
+    playerTwoMoveTwoValue = Math.floor(Math.random() * totalValue);
+    totalValue = totalValue - playerTwoMoveTwoValue;
+
+    //Assigns the left over value to move 3. 
+    playerTwoMoveThreeValue = totalValue;
+
 }//close setComputerMoves()
+
+//debugging
+/*
+setComputerMoves();
+console.log(`${playerTwoMoveOneType}`);
+console.log(`${playerTwoMoveOneValue}`);
+console.log(`${playerTwoMoveTwoType}`);
+console.log(`${playerTwoMoveTwoValue}`);
+console.log(`${playerTwoMoveThreeType}`);
+console.log(`${playerTwoMoveThreeValue}`);
+*/
