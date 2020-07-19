@@ -248,22 +248,97 @@ break;
 
 function getGameWinner() {
 /*
-TO DO: 
+TO DO: Done
 18) should declare when player one wins
 19) should declare when player two wins
 20) should declare when the game is a tie
-
-getGameWinner() - Main Functionality
-21) should return null if not all values are set
-
 */
+
+//21) should return null if not all values are set
+//checking move one type and value for both players. 
+if(playerOneMoveOneType === undefined || playerOneMoveOneValue === undefined){
+    return null;
+}
+
+if(playerTwoMoveOneType === undefined || playerTwoMoveOneValue === undefined){
+    return null;
+}
+//checking move two type and values for both players. 
+if(playerOneMoveTwoType === undefined || playerOneMoveTwoValue === undefined){
+    return null;
+}
+
+if(playerTwoMoveTwoType === undefined || playerTwoMoveTwoValue === undefined){
+    return null;
+}
+//checking move three type and values for both players. 
+if(playerOneMoveThreeType === undefined || playerOneMoveThreeValue === undefined){
+    return null;
+}
+
+if(playerTwoMoveThreeType === undefined || playerTwoMoveThreeValue === undefined){
+    return null;
+}
+
+//Will add to these variables on who wins. Winner = whichever variable is larger. 
+let playerOneScore = 0;
+let playerTwoScore = 0;
+
+//Determining Winner for round 1
+if(getRoundWinner(1) === 'Tie'){
+    playerOneScore += 1;
+    playerTwoScore += 1;
+}
+
+else if(getRoundWinner(1) === 'Player One'){
+    playerOneScore += 1;
+}
+else playerTwoScore += 1;
+
+//Determining Winner for round 2
+if(getRoundWinner(2) === 'Tie'){
+    playerOneScore += 1;
+    playerTwoScore += 1;
+}
+
+else if(getRoundWinner(2) === 'Player One'){
+    playerOneScore += 1;
+}
+else playerTwoScore += 1;
+
+//Determining Winner for round 3
+if(getRoundWinner(3) === 'Tie'){
+    playerOneScore += 1;
+    playerTwoScore += 1;
+}
+
+else if(getRoundWinner(3) === 'Player One'){
+    playerOneScore += 1;
+}
+else playerTwoScore += 1;
+
+if(playerOneScore === playerTwoScore){
+    return 'Tie';
+}
+
+else if(playerOneScore > playerTwoScore){
+    return 'Player One';
+}
+
+else return 'Player Two';
 
 } //close getGameWinner()
 
+/* Debugging
+setPlayerMoves('Player One', 'rock', 2, 'paper', 2, 'scissors', 2);
+setPlayerMoves('Player Two', 'scissors', 1, 'rock', 1, 'paper', 1);
 
-//setPlayerMoves('Player One', 'rock', 1, 'paper', 2, 'rock', 2);
-//setPlayerMoves('Player Two', 'scissors', 99, 'scissors', 3, 'scissors', 3);
-//console.log(`${getRoundWinner(1)}`);
+console.log(`${getRoundWinner(1)} wins round 1!`);
+console.log(`${getRoundWinner(2)} wins round 2!`);
+console.log(`${getRoundWinner(2)} wins round 3!`);
+
+console.log(`${getGameWinner()} wins the game!`);
+*/
 
 function setComputerMoves(){
     //TO DO: 
